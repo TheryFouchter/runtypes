@@ -132,7 +132,7 @@ export function create<A extends Runtype>(
     if (validated.success) {
       return validated.value;
     }
-    throw new ValidationError(validated.message, validated.key);
+    throw new ValidationError(validated.message, validated.key, validated.details);
   }
 
   function guard(x: any): x is A {

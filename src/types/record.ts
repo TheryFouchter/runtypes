@@ -85,6 +85,7 @@ export function InternalRecord<
                 success: false,
                 message: validated.message,
                 key: validated.key ? `${key}.${validated.key}` : key,
+                details: validated.details,
               };
             }
           }

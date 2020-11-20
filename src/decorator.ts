@@ -83,6 +83,7 @@ export function checked(...runtypes: Runtype[]) {
           throw new ValidationError(
             `${methodId}, argument #${parameterIndex}: ${validated.message}`,
             validated.key,
+            validated.details,
           );
         }
       });

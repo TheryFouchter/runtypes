@@ -1,8 +1,11 @@
 import { Runtype, Static, create } from '../runtype';
+import { Boolean } from './boolean';
 import { String } from './string';
 import { Unknown } from './unknown';
 
-export type ConstraintCheck<A extends Runtype> = (x: Static<A>) => boolean | string;
+export type ConstraintCheck<A extends Runtype> = (
+  x: Static<A>,
+) => boolean | string | Record<string, unknown>;
 
 export interface Constraint<A extends Runtype, T extends Static<A> = Static<A>, K = unknown>
   extends Runtype<T> {
@@ -31,8 +34,10 @@ export function Constraint<A extends Runtype, T extends Static<A> = Static<A>, K
 
       const result = constraint(validated.value);
       if (String.guard(result)) return { success: false, message: result };
+      else if (Boolean.guard(result) && result)
+        return { success: true, value: validated.value as T };
       else if (!result) return { success: false, message: `Failed ${name || 'constraint'} check` };
-      return { success: true, value: validated.value as T };
+      return { success: false, message: `Failed ${name || 'constraint'} check`, details: result };
     },
     {
       tag: 'constraint',

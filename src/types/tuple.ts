@@ -236,6 +236,7 @@ export function Tuple(...components: Runtype[]): any {
           success: false,
           message: `Expected tuple to be an array: ${validated.message}`,
           key: validated.key,
+          details: validated.details,
         };
       }
 
@@ -254,6 +255,7 @@ export function Tuple(...components: Runtype[]): any {
             success: false,
             message: validatedComponent.message,
             key: validatedComponent.key ? `[${i}].${validatedComponent.key}` : `[${i}]`,
+            details: validatedComponent.details,
           };
         }
       }

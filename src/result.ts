@@ -31,6 +31,11 @@ export type Failure = {
    * A key indicating the location at which validation failed.
    */
   key?: string;
+
+  /**
+   * A custom value specified by user indicating the reason validation failed.
+   */
+  details?: Record<string, unknown>;
 };
 
 /**

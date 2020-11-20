@@ -58,6 +58,7 @@ export function Dictionary<V extends Runtype>(value: V, key = 'string'): any {
             success: false,
             message: validated.message,
             key: validated.key ? `${k}.${validated.key}` : k,
+            details: validated.details,
           };
         }
       }
