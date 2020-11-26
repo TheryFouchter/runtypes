@@ -1,13 +1,7 @@
 import { Runtype, Static, create } from '../runtype';
 
-export const RuntypeName = Symbol('RuntypeName');
-
 export interface Brand<B extends string, A extends Runtype>
-  extends Runtype<
-    Static<A> & {
-      [RuntypeName]: B;
-    }
-  > {
+  extends Runtype<Static<A> & { __RuntypeName__: B }> {
   tag: 'brand';
   brand: B;
   entity: A;
